@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speaker Details</title>
+    <style>
+      /* Base styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        caret-color: transparent;
+      }
+
+      .speaker-title {
+        margin-top: 1rem;
+        width: 1200px;
+      }
+      .speaker-title p{
+        margin-top: -0.5rem;
+        opacity: 0.9;
+      }
+      
+      .speaker-title-para-text{
+        color: #003FB4;
+    }
+
+      .speaker-section {
+        width: 1200px;
+      }
+
+    
+      .speaker-details {
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        display: none; 
+        max-width: 1200px;
+        margin-top: 20px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+position: relative;
+      }
+
+      .speaker-details--active {
+        display: block; 
+      }
+
+      .speaker-details__close {
+        /* background: #ff5722; */
+        border: none;
+        color: black;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+
+      .speaker-details-div{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.speaker-details-title{
+    min-width: 370px;
+    height: 150px;
+    display: flex;
+    gap: 1rem;
+
+}
+
+.speaker-details-title img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.speaker-details-title-inside-div{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.speaker-details__icon_div{
+    margin-top: 0.5rem;
+display: flex;
+gap: 1rem;
+}
+
+.speaker-details__icon_div img{
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 0%;
+}
+
+      .speaker-details__name {
+        font-size: 1.5rem;
+        margin: 0 0 0.5rem;
+      }
+
+      .speaker-details__bio {
+        align-content: center;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        width: 730px;
+        height: 115px;
+        text-align: left;
+      }
+
+      /* Speaker Slider styles */
+      .speaker-section__slider {
+        display: flex;
+        overflow-x: scroll;
+        padding: 1rem;
+        margin-top: 1rem; /* Ensure space between details and slider */
+      }
+
+      .speaker-section__card {
+        flex: 0 0 200px;
+        margin: 0 0.5rem;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        width: 285px;
+        height: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .speaker-section__card:hover {
+        transform: scale(1.05);
+      }
+
+      .speaker-section__card__div {
+        width: 250px;
+        height: 250px;
+      }
+      .speaker-section__card__image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .speaker-section__card__name {
+        font-weight: bold;
+        margin-top: 0.5rem;
+      }
+
+      .speaker-section__card__title_div {
+        margin-top: 0.5rem;
+      }
+.speaker-section__card__title_div h3, .speaker-section__card__title_div p{
+    margin: 0;
+}
+
+.speaker-bottom-section button{
+  margin-top: 2rem;  
+width: 400px;
+height: 60px;
+border-radius: 10px;
+background-color:#003FB4;
+color: white;
+font-family: Metropolis;
+font-size: 20px;
+font-weight: 600;
+line-height: 20px;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+
+.speaker-bottom-section p{
+    margin-top: -0.5rem;
+    margin-left: -15rem;
+    width: 145px;
+    height: 50px;
+font-size: 18px;
+font-weight: 400;
+line-height: 21.11px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+
+.speaker-bottom-section img{
+    width: 140px;
+    height: 50px;
+    margin-left: -30rem;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="speaker-title">
+      <h1>View our Featured Speakers for the Event</h1>
+      <p>
+        Speakers are core contributors and industry thought leaders working at
+        <span class="speaker-title-para-text">companies</span> that push for innovation.
+      </p>
+    </div>
+    <div class="speaker-section">
+      <div id="speakerDetails" class="speaker-details">
+       <div class="speaker-details-div">
+        <div class="speaker-details-title">
+            <img id="detailsImg" src="${detailsImg}" alt="speaker name" class="speaker-details_image">
+            <div class="speaker-details-title-inside-div">
+                <h2 id="detailsName" class="speaker-details__name"></h2>
+                <div class="speaker-section__card__title_div">
+                    <h3 id="detailsTitle" ></h3>
+                    <p id="detailsCompany"></p>
+                </div>
+
+                <div class="speaker-details__icon_div">
+                    <img src="/assets/icon1.png" alt="icon1" />
+                    <img src="/assets/icon2.png" alt="icon2" />
+                    <img src="/assets/icon3.png" alt="icon3" />
+
+                </div>
+
+            </div>
+        </div>
+        <hr />
+        <p id="detailsBio" class="speaker-details__bio"></p>
+       </div>
+       <p id="closeDetails" class="speaker-details__close">X</p>
+
+    </div>
+       
+
+      <div id="speakerSlider" class="speaker-section__slider"></div>
+    </div>
+
+    <div class="speaker-bottom-section">
+        <button >See the Program</button>
+        <p>Click here to see the full program</p>
+<img src="/assets/Arrow 02.png" alt="arrow"/>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const speakers = [
+          {
+            id: 1,
+            name: "John Doe",
+            title: "Chief Marketing Officer",
+            image:
+              "https://s3-alpha-sig.figma.com/img/d6a6/fffd/2100d987b5946aa1df33cf0f6c34a418?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p0ozEGQKCEzpMDFiGB0WI7e3Jy5hs~XAzkQEmXckRff9Yql3RG4oZ3qz7U-lmzlgN5l~VSp88OF3WSEHLG8hewYzujk8BfcrkQvmBJSeDEvGfDm6uDq5Hsx9cQ1cfgLQHZz10fHEBoS7H8kb73P-hWtJj2qYrDYGdR5YhEHfHT9EQehf5C90C4PZkDVQRu6FZWCVcxHr7FcTZGWaNC-LSjOSmA4KZaKs1FIk-OEuIlV9fK7KSQoo-7pSIHsF2dGTfhxvY4s8ywp-UY0qcUPSa7BHmFJKLlpd~NhfU2JEvdZGid5XK-F6O7RbD4CLUF1cc6yaUuh1WrCdQ9fM~aRMJQ__",
+            bio: "Monotonectally synergize business communities rather than client-centric convergence. Assertively unleash cross-platform best practices rather than pandemic total linkage. Synergistically monetize parallel infomediaries whereas 2.0 mindshare.Dramatically pursue real-time markets through e-business strategic theme areas.",
+            company: "Spacbee",
+          },
+          {
+            id: 2,
+            name: "Jane Smith",
+            title: "Chief Technical Officer",
+            image:
+              "https://s3-alpha-sig.figma.com/img/9de3/b8aa/4e6fd86d00bc645311899b3fbcca52d5?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=i-2az8c~TQ4GQTgMdGGA~OiZRcxQqNliOmg1Nrh3~q5mCbkyAXoOFrZXz3rtpBmhoLH2MEPcD8uyzrysiBixOxyySVYRLqY2pdQYKhqW1Kibe4meVDaoZKzWOedglJPRuLQhW62vUhFnnDWDaxe74zfw1MfHfD-qLD4-v2FEWZy4Ww64U6DTEIPNSgwu2vhoCu0UzxocqOeUDrobUZuHnzPMc29WeTKpzHo~9NfifEoSciD~yZUa0s40o9Q~gM54g-UhG-46MlVop01DP9xSiLXP3RnQq6B3DimGuPflSgw9-5gSLX5Z94~AVOpkYwkxNCs-jiWwTnZfxmyz5X~qIw__",
+            bio: "Jane, the CTO of Acme Corp, is an expert in technology innovation and leadership. She oversees the development of cutting-edge software solutions, ensuring they align with business goals. Her passion for AI and automation is transforming the way Acme Corp serves its clients.",
+            company: "Acme Corp",
+          },
+          {
+            id: 3,
+            name: "Alice Johnson",
+            title: "Tech Lead",
+            image:
+              "https://s3-alpha-sig.figma.com/img/9134/0d19/81845f21043dd8f5192da248767c4eae?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=k803O02X0pXmvOoAJFVO6iTOVx5GGHL72bT8~YUINLU1Y6aGiPW2aRLhexGOSlbBUQ89XvZZIyecwmCJ5cV~hgYwOhN~oSLMER17lHrYCYNHAT2Jcn9BekVJbmj3zvnHHZVJR4KKR0tPZpDmCae~SI32EupBZK9ysXymdgpxj-WznEuPuu1xtWW3fyx7~ItSbU7hR86mpPpdqZ-Ds6PZH~4ZPPIkPip0oT7MehKrtQe-yXfJIoMZLu-bY9A02b~tUb2PtcZWKYBOElVVVcZRfkAG4MNx0B5RxvSxXsadVuMULmz3yebUvtY5qJrJy8gCIGCRpN35dN~qR3HpnuflCw__",
+            bio: "Alice is the Tech Lead at Acquia, driving the development of scalable and robust software solutions. With a strong foundation in full-stack development, she leads a team that builds high-performance systems while mentoring junior developers to help them grow their skills.",
+            company: "Acquia",
+          },
+          {
+            id: 4,
+            name: "Harry Johnson",
+            title: "Head HR",
+            image:
+              "https://s3-alpha-sig.figma.com/img/aeba/3e61/75255eef4aafbeaf378e32d61894f628?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=THCVaU2hZrwyAHEhKFhbXoYU4qg1f7~FK7hrPzcA1iCzXSUKV88oyZd5eSNfxrMuuAW4CK4XbwO3NCLAk2QGzmpSTcqyvuz7honPyZsNEAklbn-Gq6x06PEkqzZWPaa2RBro6TBvLC9SUsP3S9LXnzg53jVNaJ5yg2YOBbUeLp3qzOF0zGCkKdBDFJ0EnvHqqqLmAEvMrhcxNBTbyWi2F0I7yk15nb5obNZYbGGz0Tr7z7U-tWrbHtmPC3ld7AFB~IBamtN9nQQ5GpER0agWBD0ZrbpLBfMLoCxhhIZQZeigQzKxqp9d~g8aWucIgPAZh8pDE-7IxdZjQ~CjaHDmEQ__",
+            bio: "As Head of HR at Pantheon, Anna is responsible for creating a positive and inclusive work culture. She leads employee engagement initiatives, recruitment, and talent development, ensuring the company attracts and retains top talent in a rapidly changing environment.",
+            company: "Pantheon",
+          },
+          {
+            id: 5,
+            name: "Jems Dyson",
+            title: "Sales Head",
+            image:
+              "https://s3-alpha-sig.figma.com/img/9de3/b8aa/4e6fd86d00bc645311899b3fbcca52d5?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=i-2az8c~TQ4GQTgMdGGA~OiZRcxQqNliOmg1Nrh3~q5mCbkyAXoOFrZXz3rtpBmhoLH2MEPcD8uyzrysiBixOxyySVYRLqY2pdQYKhqW1Kibe4meVDaoZKzWOedglJPRuLQhW62vUhFnnDWDaxe74zfw1MfHfD-qLD4-v2FEWZy4Ww64U6DTEIPNSgwu2vhoCu0UzxocqOeUDrobUZuHnzPMc29WeTKpzHo~9NfifEoSciD~yZUa0s40o9Q~gM54g-UhG-46MlVop01DP9xSiLXP3RnQq6B3DimGuPflSgw9-5gSLX5Z94~AVOpkYwkxNCs-jiWwTnZfxmyz5X~qIw__",
+            bio: "Ketty Dyson, Sales Head at Info.Ai, drives sales strategy and business development. She leads a team of high-performing sales professionals, focusing on expanding Info.Ai’s market presence and fostering long-term relationships with clients to achieve sustainable growth.",
+            company: "Info.Ai",
+          },
+        ];
+
+        const speakerSlider = document.getElementById("speakerSlider");
+        const speakerDetails = document.getElementById("speakerDetails");
+        const detailsName = document.getElementById("detailsName");
+        const detailsBio = document.getElementById("detailsBio");
+        const closeDetails = document.getElementById("closeDetails");
+        const detailsImg = document.getElementById("detailsImg");
+        const detailsTitle = document.getElementById("detailsTitle");
+        const detailsCompany = document.getElementById("detailsCompany");
+          
+
+        // Function to render speaker cards
+        function renderSpeakers() {
+          speakers.forEach((speaker) => {
+            const card = document.createElement("div");
+            card.className = "speaker-section__card";
+            card.dataset.id = speaker.id;
+
+            card.innerHTML = `
+                       <div class="speaker-section__card__div"> <img src="${speaker.image}" alt="${speaker.name}" class="speaker-section__card__image">
+                        <h2 class="speaker-section__card__name">${speaker.name}</h2> <div class="speaker-section__card__title_div"> <h3>${speaker.title}</h3><p>${speaker.company}</p></div></div>
+                    `;
+
+            card.addEventListener("click", () => showDetails(speaker));
+            speakerSlider.appendChild(card);
+          });
+        }
+
+        // Function to show the speaker details in the details container
+        function showDetails(speaker) {
+          detailsName.textContent = speaker.name;
+          detailsBio.textContent = speaker.bio;
+          detailsImg.src = speaker.image;
+          detailsTitle.textContent = speaker.title;
+          detailsCompany.textContent = speaker.company;
+          speakerDetails.classList.add("speaker-details--active");
+        }
+
+        // Function to close the speaker details container
+        function closeDetailsFunc() {
+          speakerDetails.classList.remove("speaker-details--active");
+        }
+
+        // Attach the close function to the close button
+        closeDetails.addEventListener("click", closeDetailsFunc);
+
+        renderSpeakers();
+      });
+    </script>
+  </body>
+</html>

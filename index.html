@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speaker Details</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="speaker-title">
+      <h1>View our Featured Speakers for the Event</h1>
+      <p>
+        Speakers are core contributors and industry thought leaders working at
+        <span class="speaker-title-para-text">companies</span> that push for innovation.
+      </p>
+    </div>
+    <div class="speaker-section">
+      <div id="speakerDetails" class="speaker-details">
+        <div class="speaker-details-div">
+          <div class="speaker-details-title">
+            <img id="detailsImg" src="" alt="speaker name" class="speaker-details_image">
+            <div class="speaker-details-title-inside-div">
+              <h2 id="detailsName" class="speaker-details__name"></h2>
+              <div class="speaker-section__card__title_div">
+                <h4 id="detailsTitle"></h4>
+                <p id="detailsCompany"></p>
+              </div>
+              <div class="speaker-details_icon_div">
+                <img src="/assets/icon1.png" alt="icon1" class="speaker-details_icon_div_icon"/>
+                <img src="/assets/icon2.png" alt="icon2" class="speaker-details_icon_div_icon"/>
+                <img src="/assets/icon3.png" alt="icon3" class="speaker-details_icon_div_icon"/>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <p id="detailsBio" class="speaker-details__bio"></p>
+        </div>
+        <p id="closeDetails" class="speaker-details__close">X</p>
+      </div>
+
+      <div id="speakerSlider" class="speaker-section__slider"></div>
+    </div>
+
+    <div class="speaker-bottom-section">
+      <button type="button" >See the Program</button>
+      <p>Click here to see the full program</p>
+      <img src="/assets/Arrow 02.png" alt="arrow" />
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
